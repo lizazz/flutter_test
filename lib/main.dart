@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-//import "package:flutter/cupertino.dart";
 
 void main() => runApp(MyApp());
 
@@ -11,72 +10,81 @@ class MyApp extends StatefulWidget {
   _MyApp createState() => _MyApp();
 }
 
-class LoginData {
-  String username = "";
-  String password = "";
-}
-
 class _MyApp extends State {
-  LoginData _loginData = new LoginData();
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  var _checkboxValue = false;
+  var _switchValue = false;
+  var _sliderValue = .3;
+  var _radioValue = 1;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(title: "Flutter Playground",
-      home: Scaffold(
+  Widget build(BuildContext inContext) {
+    return MaterialApp(
+      home:Scaffold(
         body: Container(
           padding: EdgeInsets.all(50.0),
           child: Form(
             key: this._formKey,
             child: Column(
               children: [
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (String inValue) {
-                    if(inValue.length == 0) {
-                      return "Please enter username";
+                Checkbox(value: _checkboxValue,
+                    onChanged: (bool inValue) {
+                      setState(() {
+                        _checkboxValue = inValue;
+                      });
                     }
-                    return null;
-                  },
-                  onSaved: (String inValue) {
-                    this._loginData.username = inValue;
-                  },
-                  decoration: InputDecoration(
-                    hintText: "none@none.com",
-                    labelText: "Username (Email address)"
-                  ),
                 ),
-                TextFormField(
-                  obscureText: true,
-                    validator: (String inValue) {
-                      if (inValue.length < 10) {
-                        return "Password must be >= 10 in lenght";
-                      }
-                      return null;
-                    },
-                    onSaved: (String inValue) {
-                      this._loginData.password = inValue;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      labelText: "Password"
+                Switch(
+                  value: _switchValue,
+                  onChanged: (bool inValue) {
+                    setState(() {
+                      _switchValue = inValue;
+                    });
+                  },
+                ),
+                Slider(
+                    min: 0, max: 20,
+                    value: _sliderValue,
+                    onChanged: (inValue) {
+                      setState(() => _sliderValue = inValue);
+                    }
+                ),
+                Row(
+                  children: [
+                    Radio(value: 1, groupValue: _radioValue,
+                        onChanged: (int inValue) {
+                          setState(() {
+                            _radioValue = inValue;
+                          });
+                        }
                     ),
+                    Text('Option 1')
+                  ],
                 ),
-                RaisedButton(
-                    child: Text("Log in!"),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                        print("Username: ${_loginData.username}");
-                        print("Username: ${_loginData.password}");
-                      }
-                    }
-                )
+                Row(children: [
+                  Radio(value: 2, groupValue: _radioValue,
+                      onChanged: (int inValue) {
+                      setState(() {_radioValue = inValue;});
+                  }
+                  ),
+                  Text("Option 2")
+                ]),
+                Row(children: [
+                  Radio(value: 3, groupValue: _radioValue,
+                    onChanged: (int inValue) {
+                      setState(() {
+                        _radioValue = inValue;
+                      });
+                    },
+                  ),
+                  Text("Option 3")
+                ]),
+
               ],
             ),
           ),
-        )
-      ),
+        ),
+      )
     );
   }
 }
