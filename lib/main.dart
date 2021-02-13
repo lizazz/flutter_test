@@ -12,36 +12,24 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
-    Future _showIt() async {
-      switch (await showDialog(
+    Future _showIt() {
+      return showDialog(
           context: inContext,
-          builder: (BuildContext inContext) {
-            return SimpleDialog(
-              title: Text("What's your favorite food?"),
-              children: [
-                SimpleDialogOption(
-                  onPressed: () {
-                    Navigator.pop(inContext, 'Procolli');
-                  },
-                  child: Text("Brocolli"),
-                ),
-                SimpleDialogOption(
-                  onPressed: () {
-                    Navigator.pop(inContext, 'Steak');
-                  },
-                  child: Text("Steak"),
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('We come in peace...'),
+              content: Center(
+                child: Text("...shoot to kill shoot to kill shoot to kill"),
+              ),
+              actions: [
+                FlatButton(onPressed: () { Navigator.of(context).pop();},
+                    child: Text('Beam me up, Scotty')
                 )
               ],
             );
           }
-      )) {
-        case 'brocolli':
-          print('Brocolli');
-          break;
-        case 'steak':
-          print('Steak');
-          break;
-      }
+      );
     }
 
     return Scaffold(
