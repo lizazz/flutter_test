@@ -12,24 +12,20 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
-    Future _showIt() {
-      return showDialog(
-          context: inContext,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('We come in peace...'),
-              content: Center(
-                child: Text("...shoot to kill shoot to kill shoot to kill"),
-              ),
-              actions: [
-                FlatButton(onPressed: () { Navigator.of(context).pop();},
-                    child: Text('Beam me up, Scotty')
-                )
-              ],
-            );
-          }
-      );
+     _showIt() {
+       return Scaffold.of(inContext).showSnackBar(
+         SnackBar(
+           backgroundColor: Colors.red,
+           duration: Duration(seconds: 5),
+           content: Text("I like pie!"),
+           action: SnackBarAction(
+             label: "Chow down",
+             onPressed: () {
+               print("Getting' fat");
+             },
+           ),
+         )
+       );
     }
 
     return Scaffold(
