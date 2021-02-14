@@ -39,10 +39,15 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          child: Text("Show it"),
-          onPressed: _showIt,
-        ),
+        child: Theme(
+          data: ThemeData(accentColor: Colors.red),
+          child: Container(
+            color: Theme.of(inContext).accentColor,
+            child: Opacity(opacity: .25,
+              child: Text("Faded", ),
+            ),
+          ),
+        )
       )
     );
   }
