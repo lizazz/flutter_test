@@ -39,12 +39,18 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Theme(
-          data: ThemeData(accentColor: Colors.red),
-          child: Container(
-            color: Theme.of(inContext).accentColor,
-            child: Opacity(opacity: .25,
-              child: Text("Faded", ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF000000), Color(0xFFFF0000)],
+              tileMode: TileMode.repeated
+            )
+          ),
+          child: Container(width: 100, height: 100,
+            child: Text("Hello",
+              style: TextStyle(color: Colors.white),
             ),
           ),
         )
