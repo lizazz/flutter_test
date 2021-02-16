@@ -12,47 +12,19 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
-     _showIt() {
-       showModalBottomSheet(context: inContext,
-           builder: (BuildContext inContext) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("What's your favorite pet?"),
-                  FlatButton(
-                      onPressed: () {Navigator.of(inContext).pop();},
-                      child: Text("Dog")
-                  ),
-                  FlatButton(
-                      onPressed: () {Navigator.of(inContext).pop();},
-                      child: Text("Cat")
-                  ),
-                  FlatButton(
-                      onPressed: () {Navigator.of(inContext).pop();},
-                      child: Text("Ferret")
-                  )
-                ],
-              );
-           }
-       );
-    }
-
     return Scaffold(
       body: Center(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFF000000), Color(0xFFFF0000)],
-              tileMode: TileMode.repeated
+        child: Container(
+            color: Colors.yellow,
+            child: Transform(
+              alignment: Alignment.bottomLeft,
+              transform: Matrix4.skewY(0.4)..rotateZ(-3 / 12.0),
+              child: Container(
+                padding: const EdgeInsets.all(12.0),
+                color: Colors.red,
+                child: Text("Eat at Joes!"),
+              ),
             )
-          ),
-          child: Container(width: 100, height: 100,
-            child: Text("Hello",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
         )
       )
     );
