@@ -2,31 +2,44 @@ import "package:flutter/material.dart";
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
+  _MyApp	createState()	=>	_MyApp();
+  /*Widget build(BuildContext context) {
     return MaterialApp(home: Scaffold(body: Home()));
-  }
+  }*/
 }
 
-class Home extends StatelessWidget {
+class _MyApp extends State {
+  var	_color	=	Colors.yellow;
+  var	_height	=	200.0;
+  var	_width	=	200.0;
   @override
-  Widget build(BuildContext inContext) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-            color: Colors.yellow,
-            child: Transform(
-              alignment: Alignment.bottomLeft,
-              transform: Matrix4.skewY(0.4)..rotateZ(-3 / 12.0),
-              child: Container(
-                padding: const EdgeInsets.all(12.0),
-                color: Colors.red,
-                child: Text("Eat at Joes!"),
-              ),
+  Widget build(BuildContext context) {
+    return MaterialApp(home: Scaffold(
+        body: Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedContainer(
+                duration: Duration(seconds: 1),
+                color: _color, width: _width, height: _height
+            ),
+            RaisedButton(
+                child: Text("Animate!"),
+                onPressed: () {
+                  _color = Colors.red;
+                  _height = 400;
+                  _width = 400;
+                  setState(() {
+
+                  });
+                }
             )
+          ],
+        ),
+
         )
-      )
+    )
     );
   }
 }
