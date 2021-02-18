@@ -5,13 +5,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   _MyApp	createState()	=>	_MyApp();
-  /*Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: Home()));
-  }*/
 }
 
 class _MyApp extends State {
-  var _showFirst = true;
+  var _color = Colors.red;
+  var _fontSize = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,29 +17,24 @@ class _MyApp extends State {
       body: Center(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedCrossFade(
-              firstChild: FlutterLogo(
-                style: FlutterLogoStyle.horizontal,
-                size: 100.0,
+          AnimatedDefaultTextStyle(
+              child: Text("I am some text"),
+              style: TextStyle(
+                color: _color, fontSize: _fontSize
               ),
-              secondChild: FlutterLogo(
-                style: FlutterLogoStyle.stacked,
-                size: 100.0,
-              ),
-              crossFadeState: _showFirst ?
-                CrossFadeState.showFirst :
-                CrossFadeState.showSecond,
-              duration: Duration(seconds: 2)
+              duration: const Duration(seconds: 1)
           ),
           RaisedButton(
-            child: Text('Cross-Fade!'),
+              child: Text("Enhance! Enhance! Enhance!"),
               onPressed: () {
-                _showFirst = false;
+                _color = Colors.blue;
+                _fontSize = 40.0;
                 setState(() {});
-              },
+              }
           )
         ],
-      ),),
+      ),
+      ),
     ),
     );
   }
