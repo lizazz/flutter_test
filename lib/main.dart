@@ -2,40 +2,34 @@ import "package:flutter/material.dart";
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyApp	createState()	=>	_MyApp();
-}
-
-class _MyApp extends State {
-  var _color = Colors.red;
-  var _fontSize = 20.0;
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(home: Scaffold(
-      body: Center(child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedDefaultTextStyle(
-              child: Text("I am some text"),
-              style: TextStyle(
-                color: _color, fontSize: _fontSize
-              ),
-              duration: const Duration(seconds: 1)
-          ),
-          RaisedButton(
-              child: Text("Enhance! Enhance! Enhance!"),
-              onPressed: () {
-                _color = Colors.blue;
-                _fontSize = 40.0;
-                setState(() {});
-              }
-          )
-        ],
-      ),
-      ),
+      body: Center(child: Column(mainAxisAlignment:
+      MainAxisAlignment.center,
+      children: [
+        DragTarget(
+            builder: (BuildContext context,
+                List<String> accepted,
+                List<dynamic> rejected) {
+                  return new Container(width: 200, height: 200,
+                      color: Colors.lightBlue);
+                },
+                onAccept: (data) => print(data),
+            ),
+        Container(height: 50),
+        Draggable(
+            data: "I was dragged",
+            child: Container(width: 100, height: 100,
+              color: Colors.red),
+            feedback: Container(width: 100, height: 100,
+              color: Colors.yellow,)
+        )
+      ],
+      ),),
     ),
     );
   }
 }
+
