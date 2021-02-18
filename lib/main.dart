@@ -11,35 +11,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyApp extends State {
-  var	_color	=	Colors.yellow;
-  var	_height	=	200.0;
-  var	_width	=	200.0;
+  var _showFirst = true;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(home: Scaffold(
-        body: Center(child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedContainer(
-                duration: Duration(seconds: 1),
-                color: _color, width: _width, height: _height
-            ),
-            RaisedButton(
-                child: Text("Animate!"),
-                onPressed: () {
-                  _color = Colors.red;
-                  _height = 400;
-                  _width = 400;
-                  setState(() {
-
-                  });
-                }
-            )
-          ],
-        ),
-
-        )
-    )
+      body: Center(child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedCrossFade(
+              firstChild: FlutterLogo(
+                style: FlutterLogoStyle.horizontal,
+                size: 100.0,
+              ),
+              secondChild: FlutterLogo(
+                style: FlutterLogoStyle.stacked,
+                size: 100.0,
+              ),
+              crossFadeState: _showFirst ?
+                CrossFadeState.showFirst :
+                CrossFadeState.showSecond,
+              duration: Duration(seconds: 2)
+          ),
+          RaisedButton(
+            child: Text('Cross-Fade!'),
+              onPressed: () {
+                _showFirst = false;
+                setState(() {});
+              },
+          )
+        ],
+      ),),
+    ),
     );
   }
 }
