@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 
 void main() => runApp(MyApp());
@@ -6,28 +7,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(home: Scaffold(
-      body: Center(child: Column(mainAxisAlignment:
-      MainAxisAlignment.center,
-      children: [
-        DragTarget(
-            builder: (BuildContext context,
-                List<String> accepted,
-                List<dynamic> rejected) {
-                  return new Container(width: 200, height: 200,
-                      color: Colors.lightBlue);
-                },
-                onAccept: (data) => print(data),
-            ),
-        Container(height: 50),
-        Draggable(
-            data: "I was dragged",
-            child: Container(width: 100, height: 100,
-              color: Colors.red),
-            feedback: Container(width: 100, height: 100,
-              color: Colors.yellow,)
-        )
-      ],
-      ),),
+      body: Column(
+          children: [
+            Container(height: 100),
+            Table(
+              border: TableBorder(
+                top: BorderSide(width: 2),
+                bottom: BorderSide(width: 2),
+                left: BorderSide(width: 2),
+                right: BorderSide(width: 2)
+              ),
+              children: [
+                TableRow(
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text("1")
+                      )
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text("2"),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text("3")
+                      ),
+                    )
+                  ]
+                )
+              ],
+            )
+          ])
     ),
     );
   }
