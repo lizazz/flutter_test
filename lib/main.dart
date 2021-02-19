@@ -10,37 +10,32 @@ class MyApp extends StatelessWidget {
       body: Column(
           children: [
             Container(height: 100),
-            Table(
-              border: TableBorder(
-                top: BorderSide(width: 2),
-                bottom: BorderSide(width: 2),
-                left: BorderSide(width: 2),
-                right: BorderSide(width: 2)
-              ),
-              children: [
-                TableRow(
-                  children: [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text("1")
-                      )
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text("2"),
-                      ),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text("3")
-                      ),
-                    )
-                  ]
-                )
-              ],
+            DataTable(
+                sortColumnIndex: 1,
+                columns: [
+                  DataColumn(label: Text('First name')),
+                  DataColumn(label: Text("Last Name"))
+                ], 
+                rows: [
+                  DataRow(
+                      cells: [
+                        DataCell(Text("Leia")),
+                        DataCell(Text("Organa"), showEditIcon: true)
+                      ]
+                  ),
+                  DataRow(
+                    cells: [
+                      DataCell(Text("Luke")),
+                      DataCell(Text("Skywalker"))
+                    ]
+                  ),
+                  DataRow(
+                    cells: [
+                      DataCell(Text("Han")),
+                      DataCell(Text("Solo"))
+                    ]
+                  )
+                ]
             )
           ])
     ),
