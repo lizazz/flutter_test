@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^8.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,10 +47,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+ # fonts:
+ #   [family: FontAwesome]
+  assets:
+    [img/ron.jpg]
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
